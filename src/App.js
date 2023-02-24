@@ -1,7 +1,14 @@
+import Header from "./companents/header";
+import Footer from "./companents/footer";
+
 function App() {
     return (
         <div className="App">
-            <p>Hello World</p>
+            <Header/>
+            <main style={{'minHeight': '70vh'}}>
+                ...
+            </main>
+            <Footer/>
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import AnimalCard from "../companents/animal_cards";
+import AnimalCard from "../companents/animal_card";
 
 
 const Pet = () => {

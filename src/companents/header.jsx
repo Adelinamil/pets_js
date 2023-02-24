@@ -1,12 +1,13 @@
+import {Link} from "react-router-dom";
 import React from "react";
 
 const Header = () => {
     return (
         <div>
             <nav className="navbar navbar-expand-sm navbar-light">
-                <a className="navbar-brand me-0" href=""><img src='/images/logo.jpg'
-                                                              className="w-25 rounded-3"
-                                                              alt="logo"/></a>
+                <Link className="navbar-brand me-0" to={'/'}><img src='/images/logo.jpg'
+                                                                  className="w-25 rounded-3"
+                                                                  alt="logo"/></Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -15,21 +16,22 @@ const Header = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item fs-6">
-                            <a className="nav-link" aria-current="page" href=""><span
-                                className="small">Главная</span></a>
+                            <Link className="nav-link" to={'/'}><span
+                                className="small">Главная</span></Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href=""><span
-                                className="small">Профиль</span></a>
+                            <Link className="nav-link" to={'/profile'}><span
+                                className="small">Профиль</span></Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href=""><span className="small">Авторизация</span></a>
+                            <Link className="nav-link" to={'/login'}><span className="small">Авторизация</span></Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href=""><span className="small">Добавить объявление</span></a>
+                            <Link className="nav-link" to={'/new_pet'}><span className="small">Добавить объявление</span></Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href=""><span className="small">Поиск по объявлениям</span></a>
+                            <Link className="nav-link" to={'/search'}><span
+                                className="small">Поиск по объявлениям</span></Link>
                         </li>
                     </ul>
                     <form className="d-flex">

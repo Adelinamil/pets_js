@@ -1,8 +1,8 @@
 import React from "react";
-import AnimalCard from "../companents/animal_cards";
+import AnimalCard from "../companents/animal_card";
 
 
-const Orders = () => {
+const SearchResult = () => {
     return (
         <div>
             <h2 className="text-center text-white bg-primary m-2">Результаты поиска</h2>
@@ -11,4 +11,4 @@ const Orders = () => {
     );
 };
 
-export default Orders;
+export default SearchResult;

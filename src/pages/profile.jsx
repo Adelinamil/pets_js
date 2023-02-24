@@ -1,5 +1,5 @@
 import PersonalAccount from "../companents/personal_account";
-import AnimalCard from "../companents/animal_cards";
+import AnimalCard from "../companents/animal_card";
 import Pagination from "../companents/pagination";
 import ChangeEmailForm from "../companents/forms/change_email";
 import ChangePhoneForm from "../companents/forms/change_phone";

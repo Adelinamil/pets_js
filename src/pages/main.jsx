@@ -1,5 +1,5 @@
-import AnimalsSlider from "../companents/found_animals";
-import AnimalCard from "../companents/animal_cards";
+import AnimalsSlider from "../companents/animals_slider";
+import AnimalCard from "../companents/animal_card";
 import SubscribeForm from "../companents/forms/subscribe_news";
 
 const Main = () => {

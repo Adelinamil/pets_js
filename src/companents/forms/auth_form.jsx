@@ -1,6 +1,7 @@
 import React from "react";
 import EmailInput from "../inputs/email_input";
 import PasswordInput from "../inputs/password_input";
+import {Link} from "react-router-dom";
 
 
 const AuthForm = () => {
@@ -10,7 +11,7 @@ const AuthForm = () => {
                 <EmailInput/>
                 <PasswordInput/>
                 <div className="text-center">
-                    <a href="src/companents">Не зарегистрированы?</a>
+                    <Link to={'/signup'}>Не зарегистрированы?</Link>
                     <input type="submit" className="btn btn-primary mt-2 w-100" value="Войти"/>
                 </div>
             </form>

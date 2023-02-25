@@ -5,7 +5,8 @@ import {useNavigate} from "react-router-dom";
 const Search = () => {
     const [query, setQuery] = useState({district: "Приморский", kind: ""});
     const navigate = useNavigate();
-    const showResult = () => {
+    const showResult = (e) => {
+        e.preventDefault();
         navigate({
             pathname: '/search',
             search: `?district=${query.district}&kind=${query.kind}`

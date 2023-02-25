@@ -1,26 +1,27 @@
 import {Link, useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-import ReactDOM from "react-dom/client";
 
-const Header = () => {
+const Header = (props) => {
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
-    const showResult = () =>
+    const showResult = (e) => {
+        e.preventDefault();
         navigate({
             pathname: '/search',
             search: `?query=${search}`,
         });
+        window.location.reload();
+    }
     let [dataSearch, setDataSearch] = useState({data: {order: []}});
-    useEffect(() => requestCards(search, dataSearch, setDataSearch), [search])
+    useEffect(() => requestCards(search, setDataSearch), [search])
 
-    const requestCards = (search, dataSearch, setDataSearch) => {
+    const requestCards = (search, setDataSearch) => {
         const getData = setTimeout(() => {
             if (search.length < 3) return;
             fetch(`https://pets.сделай.site/api/search?query=${search}`)
                 .then(response => response.json())
                 .then(result => {
                     setDataSearch(result);
-                    console.log(dataSearch)
                 })
                 .catch(error => console.log('error', error));
         }, 1000)
@@ -29,7 +30,6 @@ const Header = () => {
     const descriptions = dataSearch.data.order.map((pet) => {
         return <option value={pet.description}/>;
     })
-
     return (
         <div>
             <nav className="navbar navbar-expand-sm navbar-light">
@@ -48,11 +48,15 @@ const Header = () => {
                                 className="small">Главная</span></Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to={'/profile'}><span
+                            <Link className="nav-link" hidden={!props.token} to={'/profile'}><span
                                 className="small">Профиль</span></Link>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item" hidden={props.token}>
                             <Link className="nav-link" to={'/login'}><span className="small">Авторизация</span></Link>
+                        </li>
+                        <li className="nav-item" hidden={!props.token}>
+                            <a className="nav-link" onClick={() => props.setToken("")}><span
+                                className="small">Выйти</span></a>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to={'/new_pet'}><span
@@ -63,7 +67,7 @@ const Header = () => {
                                 className="small">Поиск по объявлениям</span></Link>
                         </li>
                     </ul>
-                    <div className="d-flex">
+                    <form method="GET" onSubmit={showResult} className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Поиск" aria-label="Search"
                                onChange={(e) => {
                                    setSearch(e.target.value);
@@ -74,9 +78,9 @@ const Header = () => {
                         </datalist>
 
                         <button className="btn btn-primary me-3"
-                                onClick={showResult}>Поиск
+                                type="submit">Поиск
                         </button>
-                    </div>
+                    </form>
                 </div>
             </nav>
         </div>

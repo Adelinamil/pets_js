@@ -10,21 +10,23 @@ import EditPet from "./pages/edit_pet";
 import Search from "./pages/search";
 import SearchResult from "./pages/searchResult";
 import Pet from "./pages/pet";
+import useToken from "./companents/useToken";
 
 
 function App() {
+    const {token, setToken} = useToken();
     return (
         <div className="App">
-            <Header/>
+            <Header token={token} setToken={setToken}/>
             <main style={{'minHeight': '70vh'}}>
                 <Routes>
                     <Route path={'/'} element={<Main/>}/>
                     <Route path={'/signup'} element={<Registration/>}/>
-                    <Route path={'/login'} element={<Auth/>}/>
-                    <Route path={'/profile'} element={<Profile/>}/>
+                    <Route path={'/login'} element={<Auth setToken={setToken}/>}/>
+                    <Route path={'/profile'} element={<Profile token={token}/>}/>
                     <Route path={'/pet/:pet_id'} element={<Pet/>}/>
-                    <Route path={'/new_pet'} element={<AddPet/>}/>
-                    <Route path={'/edit_pet/:pet_id'} element={<EditPet/>}/>
+                    <Route path={'/new_pet'} element={<AddPet token={token}/>}/>
+                    <Route path={'/edit_pet/:pet_id'} element={<EditPet token={token}/>}/>
                     <Route path={'/search/order'} element={<Search/>}/>
                     <Route path={'/search'} element={<SearchResult/>}/>
                 </Routes>

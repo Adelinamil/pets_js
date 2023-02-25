@@ -12,9 +12,9 @@ const PhoneInput = (props) => {
         <div className="mb-3">
             <label htmlFor="phone" className="form-label">Введите свой телефон:</label>
             <input type="phone" className="form-control" name="phone" id="phone" pattern="\+\d{8,19}"
-                   aria-describedby="phoneInputDiv" required
+                   aria-describedby="phoneInputDiv" required value={props.phone}
                    onChange={handleChange} onBlur={props.onBlur && handleOnBlur}/>
-            <div id="phoneInputDiv" className="form-text">Используйте цифры, +, -.</div>
+            <div id="phoneInputDiv" className="form-text">Используйте цифры, +.</div>
         </div>
     );
 }

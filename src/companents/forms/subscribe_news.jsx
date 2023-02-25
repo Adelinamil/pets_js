@@ -13,7 +13,6 @@ const SubscribeForm = () => {
         }));
     }
     const sendEmail = (e) => {
-        console.log(data)
         e.preventDefault();
         let raw = JSON.stringify({email: data.email});
 

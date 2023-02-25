@@ -5,6 +5,7 @@ import NameInput from "../inputs/name_input";
 import PasswordInput from "../inputs/password_input";
 import CheckboxAgree from "../inputs/checkbox_agree";
 import ConfirmPasswordInput from "../inputs/confirm_password_input";
+import {Link} from "react-router-dom";
 
 
 const RegForm = () => {
@@ -45,21 +46,59 @@ const RegForm = () => {
         });
     }
 
+    const register = (e) => {
+        e.preventDefault();
+        let raw = JSON.stringify(
+            {
+                name: input.name,
+                phone: input.phone,
+                email: input.email,
+                password: input.password,
+                password_confirmation: input.confirmPassword,
+                confirm: 1
+            }
+        );
+
+        let hs = new Headers();
+        hs.append('Content-Type', 'application/json')
+
+        let requestOptions = {
+            method: 'POST',
+            body: raw,
+            headers: hs
+        };
+        fetch(`https://pets.сделай.site/api/register`, requestOptions)
+            .then(response => {
+                const status_code = response.status
+                if (status_code === 204) {
+                    document.getElementById('register_form').style.display = 'none';
+                    document.getElementById('register_success').style.display = 'block';
+                }
+            })
+            .catch(error => console.log('error', error));
+    }
+
 
     return (
         <div className="p-3">
-            <form className="animal-width300 w-50 m-auto border p-3">
+            <div id="register_success" className="alert alert-success mb-3 text-center" role="alert"
+                 style={{display: "none"}}>
+                Вы успешно зарегистрировались! Авторизируйтесь по <Link to={'/login'}>этой</Link> ссылке
+            </div>
+            <form onSubmit={register} id="register_form" className="animal-width300 w-50 m-auto border p-3">
                 <NameInput onChange={onInputChange} onBlur={validateInput}/>
                 <PhoneInput onChange={onInputChange} onBlur={validateInput}/>
                 <EmailInput onChange={onInputChange} onBlur={validateInput}/>
                 <PasswordInput onChange={onInputChange} onBlur={validateInput}/>
                 <ConfirmPasswordInput onChange={onInputChange} onBlur={validateInput}/>
+                <span id="reg_error" className="text-danger small mb-3">
+                    {error.password || error.confirmPassword}
+                </span>
                 <CheckboxAgree/>
-                <div id="reg_error" className="alert alert-danger mb-3 text-center" role="alert">
-                    {error.username || error.confirmPassword}
-                </div>
+
                 <div className="text-center">
-                    <input type="submit" className="btn btn-primary w-100" value="Зарегистрироваться"/>
+                    <input type="submit" className="btn btn-primary w-100"
+                           disabled={error.password || error.confirmPassword} value="Зарегистрироваться"/>
                 </div>
             </form>
         </div>

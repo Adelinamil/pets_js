@@ -1,6 +1,7 @@
 import React from "react";
 
 const PasswordInput = (props) => {
+    const required = props.required == null ? true : props.required;
     const handleChange = (e) => {
         props.onChange(e);
     }
@@ -16,7 +17,7 @@ const PasswordInput = (props) => {
                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{7,}$"
                    onChange={handleChange} onBlur={props.onBlur && handleOnBlur}
                    aria-describedby="passwordInputDiv"
-                   required/>
+                   required={required}/>
             <div id="passwordInputDiv" className="form-text">Не менее 7 символов, обязательно: 1 - цифра, 1 - строчная
                 буква, 1 - заглавная
                 буква

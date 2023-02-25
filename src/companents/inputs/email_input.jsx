@@ -12,7 +12,7 @@ const EmailInput = (props) => {
         <div className="mb-3">
             <label htmlFor="email" className="form-label">Введите адрес электронной почты</label>
             <input type="email" className="form-control" name="email" id="email" aria-describedby="emailInput"
-                   onChange={handleChange} onBlur={props.onBlur && handleOnBlur} required/>
+                   onChange={handleChange} onBlur={props.onBlur && handleOnBlur} required value={props.email}/>
             <div id="emailInput" className="form-text">Мы никогда не делимся Вашими e-mail ни с кем.</div>
         </div>
     );

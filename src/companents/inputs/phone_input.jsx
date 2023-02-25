@@ -1,10 +1,19 @@
 import React from "react";
 
-const PhoneInput = () => {
+const PhoneInput = (props) => {
+    const handleChange = (e) => {
+        props.onChange(e);
+    }
+
+    const handleOnBlur = (e) => {
+        props.onBlur(e);
+    }
     return (
         <div className="mb-3">
             <label htmlFor="phone" className="form-label">Введите свой телефон:</label>
-            <input type="phone" className="form-control" id="phone" aria-describedby="phoneInputDiv" required/>
+            <input type="phone" className="form-control" name="phone" id="phone" pattern="\+\d{8,19}"
+                   aria-describedby="phoneInputDiv" required
+                   onChange={handleChange} onBlur={props.onBlur && handleOnBlur}/>
             <div id="phoneInputDiv" className="form-text">Используйте цифры, +, -.</div>
         </div>
     );

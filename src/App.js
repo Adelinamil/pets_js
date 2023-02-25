@@ -25,8 +25,8 @@ function App() {
                     <Route path={'/pet/:pet_id'} element={<Pet/>}/>
                     <Route path={'/new_pet'} element={<AddPet/>}/>
                     <Route path={'/edit_pet/:pet_id'} element={<EditPet/>}/>
-                    <Route path={'/search'} element={<Search/>}/>
-                    <Route path={'/search/:query'} element={<SearchResult/>}/>
+                    <Route path={'/search/order'} element={<Search/>}/>
+                    <Route path={'/search'} element={<SearchResult/>}/>
                 </Routes>
             </main>
             <Footer/>

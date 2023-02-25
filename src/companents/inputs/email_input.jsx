@@ -1,10 +1,18 @@
 import React from "react";
 
-const EmailInput = () => {
+const EmailInput = (props) => {
+    const handleChange = (e) => {
+        props.onChange(e);
+    }
+
+    const handleOnBlur = (e) => {
+        props.onBlur(e);
+    }
     return (
         <div className="mb-3">
             <label htmlFor="email" className="form-label">Введите адрес электронной почты</label>
-            <input type="email" className="form-control" id="email" aria-describedby="emailInput" required/>
+            <input type="email" className="form-control" name="email" id="email" aria-describedby="emailInput"
+                   onChange={handleChange} onBlur={props.onBlur && handleOnBlur} required/>
             <div id="emailInput" className="form-text">Мы никогда не делимся Вашими e-mail ни с кем.</div>
         </div>
     );

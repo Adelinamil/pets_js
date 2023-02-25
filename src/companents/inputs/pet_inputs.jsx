@@ -1,7 +1,8 @@
 import React from "react";
 
 
-const PetInputs = () => {
+const PetInputs = (props) => {
+    const pet = props.pet;
     return (
         <div>
             <div className="mb-3">

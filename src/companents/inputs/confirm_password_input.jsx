@@ -1,10 +1,19 @@
 import React from "react";
 
-const ConfirmPasswordInput = () => {
+const ConfirmPasswordInput = (props) => {
+    const handleChange = (e) => {
+        props.onChange(e);
+    }
+
+    const handleOnBlur = (e) => {
+        props.onBlur(e);
+    }
+
     return (
         <div className="mb-3">
             <label htmlFor="confirm_password" className="form-label">Повторите пароль пароль:</label>
-            <input type="password" className="form-control" id="confirm_password"/>
+            <input type="password" className="form-control" name="confirmPassword" id="confirm_password"
+                   onChange={handleChange} onBlur={props.onBlur && handleOnBlur}/>
         </div>
     );
 }

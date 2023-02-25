@@ -1,39 +1,69 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+
+
+const Slide = (props) => {
+    return (
+        <div className={props.css_class}>
+            <img src={'https://pets.сделай.site' + props.data.image} className="d-block m-auto mt-3" alt="photo_pets"
+                 style={{width: '300px', height: '250px'}}/>
+            <h2 className="text-center">{props.data.kind}</h2>
+            <p className="text-center">{props.data.description}</p>
+        </div>
+    )
+}
 
 
 const AnimalsSlider = () => {
+    let [slide, setSlide] = useState({data: {pets: []}});
+    useEffect(() => requestSlide(slide, setSlide), []);
+
+    const requestSlide = (slide, setSlide) => {
+        const requestOptions = {
+            method: 'GET',
+        };
+
+        fetch("https://pets.сделай.site/api/pets/slider", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                setSlide(result)
+            })
+            .catch(error => console.log('error', error));
+
+    };
+
+    let slides = slide.data.pets.map((pet, index) => {
+        if (index === 0) {
+            return <Slide data={pet} key={index} css_class='carousel-item active'/>;
+        } else {
+            return <Slide data={pet} key={index} css_class='carousel-item'/>;
+
+        }
+    })
+
+
+    let indicators = slide.data.pets.map((pet, index) => {
+        if (index === 0) {
+            return <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                           className="active" aria-current="true" aria-label="Slide 1" key={index + 'btn'}></button>;
+        } else {
+            return <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={index}
+                           aria-label={"Slide " + (Number(index) + 1)} key={index + 'btn'}></button>;
+
+        }
+    })
+
+    if (slides.length < 1) return (<div></div>);
+
     return (
         <div>
+            <h2 className="text-center text-white bg-primary m-2">Найденные животные</h2>
             <div id="carouselExampleIndicators" className="carousel slide m-auto bg-success bg-opacity-25 w-75 p-2"
                  data-bs-ride="carousel" style={{'minHeight': '400px'}}>
                 <div className="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                            className="active"
-                            aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
+                    {indicators}
                 </div>
                 <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <img src="/images/собака.jpg" className="d-block m-auto mt-3" alt="Собака"
-                             style={{'width': '300px'}}/>
-                        <h2 className="text-center">Найдена собака</h2>
-                        <p className="text-center">Собака рыжая, была утеряна в красногвардейчком райне районе</p>
-                    </div>
-                    <div className="carousel-item">
-                        <img src="/images/мышь.jpg" className="d-block m-auto mt-3" alt="Мышь"
-                             style={{'width': '300px'}}/>
-                        <h2 className="text-center">Найдена мышь</h2>
-                        <p className="text-center">Мышь серая, была утеряна в центральном районе</p>
-                    </div>
-                    <div className="carousel-item">
-                        <img src="/images/горилла.jpg" className="d-block m-auto mt-3" alt="Горилла"
-                             style={{'width': '300px'}}/>
-                        <h2 className="text-center">Найдена горила</h2>
-                        <p className="text-center">Горилла, была утеряна в красногвардейчком райне районе</p>
-                    </div>
+                    {slides}
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                         data-bs-slide="prev">

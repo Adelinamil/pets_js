@@ -10,7 +10,7 @@ const EditPet = () => {
     return (
         <div>
             <h2 className="text-center text-white bg-primary m-2">Редактирование объявления</h2>
-            <EditPetForm/>
+            <EditPetForm pet_id={pet_id}/>
         </div>
     );
 }

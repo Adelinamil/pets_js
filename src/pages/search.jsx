@@ -1,15 +1,26 @@
-import React from "react";
+import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 
 const Search = () => {
+    const [query, setQuery] = useState({district: "Приморский", kind: ""});
+    const navigate = useNavigate();
+    const showResult = () => {
+        navigate({
+            pathname: '/search',
+            search: `?district=${query.district}&kind=${query.kind}`
+        })
+    }
     return (
         <div>
             <h2 className="text-center text-white bg-primary m-2">Поиск по объявлениям</h2>
             <div className="p-3">
-                <form className="animal-width300 w-50 m-auto border p-3">
+                <form method="GET" onSubmit={showResult} className="animal-width300 w-50 m-auto border p-3">
                     <div className="mb-3">
                         <label htmlFor="district" className="form-label">Выберите район:</label>
-                        <select id="district" className="form-select">
+                        <select id="district" className="form-select" value={query.kind} onChange={(e) => {
+                            setQuery({kind: query.kind, district: e.target.value})
+                        }}>
                             <option>Приморский</option>
                             <option>Петроградский</option>
                             <option>Василиостровский</option>
@@ -22,10 +33,14 @@ const Search = () => {
 
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Введите вид животного:</label>
-                        <input type="text" className="form-control" id="password"/>
+                        <input type="text" className="form-control" id="password" onChange={(e) => {
+                            setQuery({kind: e.target.value, district: query.district})
+                        }} required/>
                     </div>
                     <div className="text-center">
-                        <input type="submit" className="btn btn-primary w-100" value="Найти"/>
+                        <button type="submit" className="btn btn-primary w-100" value="Найти"
+                                >Поиск
+                        </button>
                     </div>
                 </form>
             </div>

@@ -32,7 +32,7 @@ const Search = () => {
                             <option>Калининский</option>
                             <option>Невский</option>
                             <option>Курортный</option>
-                            <option>Курортный</option>
+                            <option>Медвежий угол</option>
                         </select>
                     </div>
 

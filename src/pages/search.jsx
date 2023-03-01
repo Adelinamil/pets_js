@@ -25,7 +25,7 @@ const Search = () => {
                         }}>
                             <option>Приморский</option>
                             <option>Петроградский</option>
-                            <option>Василиостровский</option>
+                            <option>Василеостровский</option>
                             <option>Центральный</option>
                             <option>Красногвардейский</option>
                             <option>Выборгский</option>

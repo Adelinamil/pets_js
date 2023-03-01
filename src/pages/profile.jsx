@@ -1,7 +1,6 @@
 import PersonalAccount from "../companents/personal_account";
 import ChangeEmailForm from "../companents/forms/change_email";
 import ChangePhoneForm from "../companents/forms/change_phone";
-import PetCard from "../companents/pet_card";
 import React, {useEffect, useState} from "react";
 import Animal from "../companents/animal";
 

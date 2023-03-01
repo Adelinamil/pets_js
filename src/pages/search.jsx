@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 const Search = () => {
     const [query, setQuery] = useState({district: "Приморский", kind: ""});
     const navigate = useNavigate();
+    console.log(query)
     const showResult = (e) => {
         e.preventDefault();
         navigate({
@@ -19,7 +20,7 @@ const Search = () => {
                 <form method="GET" onSubmit={showResult} className="animal-width300 w-50 m-auto border p-3">
                     <div className="mb-3">
                         <label htmlFor="district" className="form-label">Выберите район:</label>
-                        <select id="district" className="form-select" value={query.kind} onChange={(e) => {
+                        <select id="district" className="form-select" onChange={(e) => {
                             setQuery({kind: query.kind, district: e.target.value})
                         }}>
                             <option>Приморский</option>

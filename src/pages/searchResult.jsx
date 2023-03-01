@@ -1,8 +1,5 @@
 import React, {useEffect, useState} from "react";
-import AnimalCard from "../companents/animal_card";
 import {useLocation} from "react-router-dom";
-import PetCard from "../companents/pet_card";
-import pet from "./pet";
 import Animal from "../companents/animal";
 
 

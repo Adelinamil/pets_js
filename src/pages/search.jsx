@@ -30,6 +30,9 @@ const Search = () => {
                             <option>Красногвардейский</option>
                             <option>Выборгский</option>
                             <option>Калининский</option>
+                            <option>Невский</option>
+                            <option>Курортный</option>
+                            <option>Курортный</option>
                         </select>
                     </div>
 
